@@ -1,31 +1,33 @@
 public class Partido {
 
     // Atributos Clase Partido:
-    private Equipo eq1;
-    private Equipo eq2;
-    private int golesEq1;
-    private int golesEq2;
+    private Equipo equipo1;
+    private Equipo equipo2;
+    private int golesEquipo1;
+    private int golesEquipo2;
 
 
-    // Constructor de Clase Partidos:
-    public Partido(Equipo eq1, int golesEq1, int golesEq2, Equipo eq2){
-        this.eq1 = eq1;
-        this.eq2 = eq2;
+    // Constructor de Clase Partido:
+    public Partido(Equipo equipo1, Equipo equipo2, int golesEq1, int golesEq2){
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
+        this.golesEquipo1 = golesEquipo1;
+        this.golesEquipo2 = golesEquipo2;
     }
 
-    // Métodos de Clase Partidos:
+    // Métodos de Clase Partido:
+    public Equipo getEquipo1() {
+        return equipo1;
+    }
+    public Equipo getEq2() {
+        return equipo2;
+    }
+    public int getGolesEquipo1() {
+        return golesEquipo1;
+    }
 
+    public int getGolesEquipo2() {
+        return golesEquipo2;
+    }
 
-    public int getGolesEq1() {
-        return golesEq1;
-    }
-    public void setGolesEq1(int golesEq1) {
-        this.golesEq1 = golesEq1;
-    }
-    public int getGolesEq2() {
-        return golesEq2;
-    }
-    public void setGolesEq2(int golesEq2) {
-        this.golesEq2 = golesEq2;
-    }
 }
