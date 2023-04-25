@@ -5,10 +5,11 @@ public class Partido {
     private Equipo equipo2;
     private int golesEquipo1;
     private int golesEquipo2;
+    private String resultado;
 
 
     // Constructor de Clase Partido:
-    public Partido(Equipo equipo1, Equipo equipo2, int golesEq1, int golesEq2){
+    public Partido(Equipo equipo1, Equipo equipo2, int golesEquipo1, int golesEquipo2){
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.golesEquipo1 = golesEquipo1;
@@ -27,6 +28,15 @@ public class Partido {
     }
     public int getGolesEquipo2() {
         return golesEquipo2;
+    }
+    public String getResultado() {
+        if (golesEquipo1 > golesEquipo2) {
+            return "GANA EQUIPO 1";
+        } else if (golesEquipo1 == golesEquipo2) {
+            return "EMPATE";
+        } else {
+            return "GANA EQUIPO 2";
+        }
     }
 
 }

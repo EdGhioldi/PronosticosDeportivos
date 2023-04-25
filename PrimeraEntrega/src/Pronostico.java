@@ -14,15 +14,18 @@ public class Pronostico {
         this.equipo2 = equipo2;
     }
 
-    //Atributos de la Clase Pronostico:
+    //Metodos de la Clase Pronostico:
     public Partido getPartido() {
         return partido;
     }
-
+    public Equipo getEquipo1() {
+        return equipo1;
+    }
+    public Equipo getEquipo2() {
+        return equipo2;
+    }
     public String getResultado() {
         return resultado;
     }
-    public String Conclusion() {
-        return equipo1.getNombre() + " vs " + equipo2.getNombre() + " - Pronóstico: " + resultado;
-    }
+
 }
