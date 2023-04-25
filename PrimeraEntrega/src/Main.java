@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.*;
 
 public class Main {
 
@@ -17,7 +16,9 @@ public class Main {
 
 
         //A LA VARIABLE ANTERIOR LA DIVIDIMOS EN ARRAYS POR LOS SALTOS DE PAGINA, TODO EN VARIABLE STRING
+        assert resultadosContenido != null;
         String[] resultadosFilas = resultadosContenido.split("\n");
+        assert pronosticoContenido != null;
         String[] pronosticoFilas = pronosticoContenido.split("\n");
 
         /*
@@ -87,21 +88,9 @@ public class Main {
         */
 
 
-        //AHORA SEPARAREMOS DE PRONOSTICO, LOS EQUIPOS DE LA ELECCION
-        String equipo1Pronostico1 = pronosticoLinea1[0];
-        String equipo2Pronostico1 = pronosticoLinea1[4];
-        String equipo1Pronostico2 = pronosticoLinea2[0];
-        String equipo2Pronostico2 = pronosticoLinea2[4];
-        /* PRUEBA
-        System.out.println("1er Equipo del Pronostico: " + equipo1Pronostico1);
-        System.out.println("2do Equipo del Pronostico: " + equipo2Pronostico1);
-        System.out.println("3er Equipo del Pronostico: " + equipo1Pronostico2);
-        System.out.println("4to Equipo del Pronostico: " + equipo2Pronostico2);
-        */
-
-        // TOMAMOS LOS VALORES DE LAS ELECCIONES EN UN NUEVO ARREGLO, NO ES NECESARIO CAMBIARLE EL TIPO
-        String[] pronosticoPartido1 = {pronosticoLinea1[1],pronosticoLinea1[2],pronosticoLinea1[3]};
-        String[] pronosticoPartido2 = {pronosticoLinea2[1],pronosticoLinea2[2],pronosticoLinea2[3]};
+        // TOMAMOS LOS VALORES DE LAS ELECCIONES EN UN NUEVO ARREGLO
+        String[] pronosticoPartido1 = {pronosticoLinea1[1], pronosticoLinea1[2], pronosticoLinea1[3]};
+        String[] pronosticoPartido2 = {pronosticoLinea2[1], pronosticoLinea2[2], pronosticoLinea2[3]};
         /*  PRUEBA
         System.out.print("Gana1: " + pronosticoPartido1[0] + "\n");
         System.out.print("Empate: " + pronosticoPartido1[1] + "\n");
@@ -151,9 +140,9 @@ public class Main {
 
 
         //CREAMOS OBJETO DE LA CLASE PRONOSTICO
-        Pronostico pronostico1 = new Pronostico(partido1, pronosticoPart1,equipo1,equipo2);
-        Pronostico pronostico2 = new Pronostico(partido2, pronosticoPart2,equipo3, equipo4);
-        ///*
+        Pronostico pronostico1 = new Pronostico(partido1, pronosticoPart1, equipo1, equipo2);
+        Pronostico pronostico2 = new Pronostico(partido2, pronosticoPart2, equipo3, equipo4);
+        /*
         System.out.println("Equipo 1 del Pronostico: " + pronostico1.getEquipo1().getNombre());
         System.out.println("Equipo 2 del Pronostico: " + pronostico1.getEquipo2().getNombre());
         System.out.println("Equipo 3 del Pronostico: " + pronostico2.getEquipo1().getNombre());
@@ -162,10 +151,26 @@ public class Main {
         System.out.println("Resultado del Pronostico 1: " + pronostico1.getResultado());
         System.out.println("Resultado del Partido 2: " + pronostico2.getPartido().getResultado());
         System.out.println("Resultado del Pronostico 2: " + pronostico2.getResultado());
+        */
 
 
-        //*/
+        //Comparamos Resultados y Generamos Puntaje
+    String[] resPron = {pronostico1.getResultado(), pronostico2.getResultado()};
+    String[] resPart = {pronostico1.getPartido().getResultado(),pronostico2.getPartido().getResultado()};
+     /* PRUEBA
+        System.out.println(resPron[0]);
+        System.out.println(resPron[1]);
+        System.out.println(resPart[0]);
+        System.out.println(resPart[1]);
+    */
 
+        int puntos = 0;
+        for (int i = 0; i < resPron.length; i++){
+            if (resPron[i].equals(resPart[i])){
+                puntos++;
+            }
+        }
+        System.out.println("Puntaje Obtenido: " + puntos);
 
 
     }
@@ -177,7 +182,7 @@ public class Main {
             byte[] bytes = Files.readAllBytes(filePath);
             return new String(bytes);
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo " + filePath.toString() + ": " + e.getMessage());
+            System.out.println("Error al leer el archivo " + filePath + ": " + e.getMessage());
             return null;
         }
     }
@@ -190,7 +195,4 @@ public class Main {
             return "GANA EQUIPO 2";
         }
     }
-
-
-
 }

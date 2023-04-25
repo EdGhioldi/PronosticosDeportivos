@@ -17,26 +17,15 @@ public class Partido {
     }
 
     // Métodos de Clase Partido:
-    public Equipo getEquipo1() {
-        return equipo1;
-    }
-    public Equipo getEquipo2() {
-        return equipo2;
-    }
-    public int getGolesEquipo1() {
-        return golesEquipo1;
-    }
-    public int getGolesEquipo2() {
-        return golesEquipo2;
-    }
     public String getResultado() {
         if (golesEquipo1 > golesEquipo2) {
-            return "GANA EQUIPO 1";
+            resultado = "GANA EQUIPO 1";
         } else if (golesEquipo1 == golesEquipo2) {
-            return "EMPATE";
+            resultado = "EMPATE";
         } else {
-            return "GANA EQUIPO 2";
+            resultado = "GANA EQUIPO 2";
         }
+        return resultado;
     }
 
 }

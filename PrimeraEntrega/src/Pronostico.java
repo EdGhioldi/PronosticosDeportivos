@@ -18,14 +18,7 @@ public class Pronostico {
     public Partido getPartido() {
         return partido;
     }
-    public Equipo getEquipo1() {
-        return equipo1;
-    }
-    public Equipo getEquipo2() {
-        return equipo2;
-    }
     public String getResultado() {
         return resultado;
     }
-
 }

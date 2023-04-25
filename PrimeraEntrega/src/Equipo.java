@@ -1,8 +1,8 @@
 public class Equipo {
 
     //Atributos de la Clase Equipo
-    private String nombre;
-    private String descripcion;
+    private final String nombre;
+    private final String descripcion;
 
     //Constructor de la Clase Equipo
     public Equipo (String nombre, String descripcion){
@@ -10,16 +10,8 @@ public class Equipo {
         this.descripcion = descripcion;
     }
 
-    //Métodos de la Clase Equipo
+    //Métodos de la Clse Equipo
     public String getNombre() {
         return nombre;
     }
-    public void setNombre(String nombre) {this.nombre = nombre;}
-    public String getDescripcion() {
-        return descripcion;
-    }
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
 }
