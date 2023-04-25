@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -25,19 +27,23 @@ public class Main {
         String[] pronosticoLinea1 = pronosticoFilas[1].split(",");
         String[] pronosticoLinea2 = pronosticoFilas[2].split(",");
 
-        /* HASTA AQUÍ, PUDIMOS INDIVIDUALIZAR LOS VALORES DE LOS ARCHIVOS '.CSV'.
-        EN "RESULTADOS", SABEMOS POR LA FORMA EN QUE ESTÁ DIESPUESTO EL ARCHIVO '.CSV' QUE
-        EL PRIMER Y EL ÚLTIMO PARAMETRO SON NOMBRES DE LOS EQUIPOS, Y QUE LOS PARAMETROS
-        2DO Y 3RO SON LA CANTIDAD DE GOLES HECHOS POR CADA UNO. POR LO QUE [0,3] SON DE TIPO
-        STRING Y [1,2] SON DE TIPO INT.   */
+        /* HASTA AQUÍ, PUDIMOS INDIVIDUALIZAR LOS VALORES DE LOS ARCHIVOS '.CSV'.  EN "RESULTADOS", SABEMOS POR
+        LA FORMA EN QUE ESTÁ DIESPUESTO EL ARCHIVO '.CSV' QUE EL PRIMER Y EL ÚLTIMO PARAMETRO SON NOMBRES DE
+        LOS EQUIPOS, Y QUE LOS PARAMETROS 2 Y 3 SON LA CANTIDAD DE GOLES HECHOS POR CADA UNO. POR LO QUE [0,3]
+        DEBEN SER DE TIPO STRING Y [1,2] DEBEN SER DE TIPO INT.   */
 
         //AHORA PASAREMOS LOS GOLES A PARAMETROS DE TIPO NUMERICO
-        int golesResultadoLinea1Eq1 = Integer.parseInt(resultadosLinea1[1]);
-        int golesResultadoLinea1Eq2 = Integer.parseInt(resultadosLinea1[2]);
-        int golesResultadoLinea2Eq1 = Integer.parseInt(resultadosLinea2[1]);
-        int golesResultadoLinea2Eq2 = Integer.parseInt(resultadosLinea2[2]);
+        int golesLinea1Eq1 = Integer.parseInt(resultadosLinea1[1]);
+        int golesLinea1Eq2 = Integer.parseInt(resultadosLinea1[2]);
+        int golesLinea2Eq1 = Integer.parseInt(resultadosLinea2[1]);
+        int golesLinea2Eq2 = Integer.parseInt(resultadosLinea2[2]);
 
         //EN CUANTO A RESULTADO, YA TENEMOS EN VARIABLES INDIVIDUALES Y DE TIPO CORRECTO LOS VALORES.
+        String eq1Linea1 = resultadosLinea1[0];
+        String eq2Linea1 = resultadosLinea1[3];
+        String eq1Linea2 = resultadosLinea1[0];
+        String eq2Linea2 = resultadosLinea1[3];
+
 
         //AHORA SEPARAREMOS DE PRONOSTICO, LOS EQUIPOS DE LA ELECCION
         String equipo1Pronostico1 = pronosticoLinea1[0];
@@ -50,11 +56,29 @@ public class Main {
         String[] pronosticoPartido2 = {pronosticoLinea2[1],pronosticoLinea2[2],pronosticoLinea2[3]};
 
         //CREAMOS UNA FUNCION 'calcularPronostico' QUE DEVUELVA EL RESULTADO DEL PRONOSTICO
-        String resultadoPronostico1 = calcularPronostico(pronosticoPartido1);//GANA EQUIPO1
-        String resultadoPronostico2 = calcularPronostico(pronosticoPartido2);// EMPATE
+        String pronosticoPart1 = calcularPronostico(pronosticoPartido1);//GANA EQUIPO1
+        String pronosticoPart2 = calcularPronostico(pronosticoPartido2);// EMPATE
+
+
+        //CREAMOS LOS OBJETOS DE LA CLASE EQUIPO
+        Equipo equipo1 = new Equipo(eq1Linea1, "CONMEBOL");
+        Equipo equipo2 = new Equipo(eq2Linea2, "AFC");
+        Equipo equipo3 = new Equipo(eq1Linea2, "UEFA");
+        Equipo equipo4 = new Equipo(eq2Linea2, "CONCACAF");
+
+        //CREAMOS LOS OBJETOS DE LA CLASE PARTIDO
+        Partido partido1 = new Partido(equipo1, equipo2, golesLinea1Eq1, golesLinea1Eq2);
+        Partido partido2 = new Partido(equipo3, equipo4, golesLinea2Eq1, golesLinea2Eq2);
+
+        //CREAMOS OBJETO DE LA CLASE PRONOSTICO
+        Pronostico pronostico1 = new Pronostico(partido1, pronosticoPart1,equipo1,equipo2);
+        Pronostico pronostico2 = new Pronostico(partido2, pronosticoPart2,equipo3, equipo4);
+
 
 
     }
+
+    // FUNCIONES
 
     public static String readFileAsString(Path filePath) {
         try {
@@ -66,9 +90,9 @@ public class Main {
         }
     }
     public static String calcularPronostico(String[] pronosticoPartido) {
-        if (pronosticoPartido[0].equals("x")) {
+        if (pronosticoPartido[0].equals("X")) {
             return "GANA EQUIPO1";
-        } else if (pronosticoPartido[1].equals("x")) {
+        } else if (pronosticoPartido[1].equals("X")) {
             return "EMPATE";
         } else{
             return "GANA EQUIPO2";

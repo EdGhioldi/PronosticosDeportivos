@@ -2,27 +2,27 @@ public class Pronostico {
 
     //Atributos de la Clase Pronóstico:
     private Partido partido;
-    private Equipo[] equipos;
-    private ResultadoEnum resultado;
+    private Equipo equipo1;
+    private Equipo equipo2;
+    private String resultado;
 
     //Constructores de la Clase Pronóstico:
-    public Pronostico(Partido partido, Equipo[] equipos, ResultadoEnum resultado){
-        this.partido = partido;
+    public Pronostico(Partido partido, String resultado, Equipo equipo1, Equipo equipo2){
+        this.partido= partido;
         this.resultado = resultado;
-        this.equipos = equipos;
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
     }
 
     //Atributos de la Clase Pronostico:
     public Partido getPartido() {
         return partido;
     }
-    public Equipo[] getEquipos() {
-        return equipos;
-    }
-    public ResultadoEnum getResultado() {
+
+    public String getResultado() {
         return resultado;
     }
-    public String toString() {
-        return equipos[0].getNombre() + " vs " + equipos[1].getNombre() + " - Pronóstico: " + resultado.toString();
+    public String Conclusion() {
+        return equipo1.getNombre() + " vs " + equipo2.getNombre() + " - Pronóstico: " + resultado;
     }
 }
